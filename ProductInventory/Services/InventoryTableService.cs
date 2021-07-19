@@ -1,4 +1,5 @@
 ﻿using ConsoleTables;
+using ProductInventory.Interfaces;
 using ProductInventory.Services;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace ProductInventory
 {
     public class InventoryTableService
     {
+        // setting up dependencies of other service classes to allow use of methods
         #region Private Properties
         private readonly IUpdateInventoryService _updateInventoryService;
         #endregion
@@ -30,7 +32,7 @@ namespace ProductInventory
             var freshItem = _updateInventoryService.UpdateFreshItem();
             var invalidItem = _updateInventoryService.UpdateInvalid();
 
-            //this is used to set the table in the command prompt when running the application 
+            //this is used to iterate the IEnumerable object and used with return keyword used to create the table in run method
             yield return new Inventory
             {
                 //calling properties from service class
@@ -68,8 +70,10 @@ namespace ProductInventory
                 Item = invalidItem.Item
             };
         }
-        public async void Run(String[] args)
+        //Run class is called in program class for showing table of inventorys when running the app
+        public void Run(String[] args)
         {
+            // setting an instance of the InventoryTableService object to call and write to console table
             var inventoryTable = new InventoryTableService(_updateInventoryService);
             ConsoleTable.
                 From(inventoryTable.GetInventoryItems())

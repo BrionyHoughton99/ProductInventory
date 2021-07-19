@@ -1,8 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using ProductInventory;
+using ProductInventory.Interfaces;
 using ProductInventory.Models;
-using ProductInventory.Services;
+using System;
 
 namespace ProductInventoryTests
 {
@@ -12,6 +13,7 @@ namespace ProductInventoryTests
         [TestMethod]
         public void UpdateFrozenItemTest()
         {
+            //setting input values 
             var inventoryItem = new InventoryItem();
             var sellIn = -1;
             var quality = 55;
@@ -21,8 +23,10 @@ namespace ProductInventoryTests
                 Quality = 50,
                 Item = inventoryItem.FrozenFood
             };
+            //using moq to serve instance of IUpdateInventoryService UpdateFrozenItem method
             var mock = new Mock<IUpdateInventoryService>();
             mock.Setup(x => x.UpdateFrozenItem()).Returns(frozenItem);
+            //checking if the test will pass
             Assert.AreEqual(frozenItem.SellIn, sellIn - 1);
             Assert.AreEqual(frozenItem.Quality, quality - 5);
 

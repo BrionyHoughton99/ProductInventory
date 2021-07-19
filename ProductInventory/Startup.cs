@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using ProductInventory.Interfaces;
 using ProductInventory.Services;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,8 @@ namespace ProductInventory
     {
         public static IServiceCollection ConfigureServices()
         {
-            //creating an instance of the table class for calling in program class using dependency injection
+            //using configureservice class to create instances of services for dependency injection through out app
+            //these are called in Program class
             var services = new ServiceCollection();
 
             services.AddTransient<InventoryTableService>();

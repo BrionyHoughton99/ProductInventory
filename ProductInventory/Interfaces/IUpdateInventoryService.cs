@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProductInventory.Services
+namespace ProductInventory.Interfaces
 {
     public interface IUpdateInventoryService
     {

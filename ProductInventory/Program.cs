@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using ProductInventory.Interfaces;
 using ProductInventory.Services;
 using System;
 
@@ -8,7 +9,7 @@ namespace ProductInventory
     {
         public static void Main(String[] args)
         {
-            //using dependency injection to configure services using dependency injection
+            //using dependency injection to configure services
             var services = Startup.ConfigureServices();
             var serviceProvider = services.BuildServiceProvider();
             serviceProvider.GetService<InventoryTableService>().Run(args);
